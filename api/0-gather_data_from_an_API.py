@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """This script use a REST API, to retive data from it"""
 import requests
-from sys import argv
+import sys
 
 
 def get_name(id):
@@ -46,18 +46,17 @@ def To_do_list(data=None):
                 tasks_titles.append(info.get('title', ''))
         text += f"Employee {name} is done with tasks({done}/{tasks}):\n"
         for index, title in enumerate(tasks_titles):
-            text += f"\t {title}"
+            text += f"\t{title}"
             if index < len(tasks_titles) - 1:
                 text += "\n"
     return text
 
 
 if __name__ == "__main__":
-    if len(argv) > 1:
-        emplo_id = argv[1]
+    if len(sys.argv) > 1:
+        emplo_id = sys.argv[1]
     else:
         raise ValueError(f"request failed, no employee ID found")
-    
     url = f"https://jsonplaceholder.typicode.com/todos?userId={emplo_id}"
     connection = requests.get(url)
     if connection.status_code == 200:
