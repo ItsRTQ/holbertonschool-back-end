@@ -34,7 +34,7 @@ def CVS_format(data=None):
             ValueError - data arg is None/Null
     """
 
-    txt = 'USER_ID,USERNAME,TASK_COMPLETED_STATUS,TASK_TITLE\n'
+    txt = ''
     if data:
         userId = data[1].get('userId', '')
         name = get_name(userId)
