@@ -34,15 +34,16 @@ def CVS_format(data=None):
             ValueError - data arg is None/Null
     """
 
-    txt = ''
+    txt = 'USER_ID,USERNAME,TASK_COMPLETED_STATUS,TASK_TITLE\n'
     if data:
         userId = data[1].get('userId', '')
         name = get_name(userId)
-        for info in data:
+        for index, info in enumerate(data):
             current = info.get('completed', 'Not Found')
             title = info.get('title', 'Not Found')
             txt += '"{}","{}","{}","{}"'.format(userId, name, current, title)
-            txt += '\n'
+            if index < len(data) - 1:
+                txt += "\n"
         return txt
     else:
         raise ValueError("Fail To Create Text, Data Missing")
